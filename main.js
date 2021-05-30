@@ -17,7 +17,7 @@ function createWindow () {
     win.loadFile('index.html')
 }
 
-app.whenReady().then(createWindow).then(showNotification)
+app.whenReady().then(createWindow)
 
 app.on('window-all-closed', function () {
     if (process.platform !== 'darwin') app.quit()
