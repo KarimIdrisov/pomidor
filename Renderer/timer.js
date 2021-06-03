@@ -1,6 +1,8 @@
+"use strict"
+
 const start = document.getElementById('start')
 const timer = document.getElementById('timer')
-let time = new Date(5000)
+let time = new Date(1499000) // 25 minutes
 let timerId
 
 function launchTime() {
@@ -10,9 +12,10 @@ function launchTime() {
     console.log(time)
     if (time.getMinutes() === 0 && time.getSeconds() === 0) {
         clearInterval(timerId)
-        const myNotification = new Notification('Title', {
-            body: 'Notification from the Renderer process'
+        const overTime = new Notification('Time is over', {
+            body: 'You successfully pass this pomidoro. You need some rest!'
         })
+        time = new Date(1499000)
     }
 }
 

@@ -5,14 +5,20 @@
         <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
          <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
          <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-         <link rel="stylesheet" type="text/css" href="./styles.css" />
+         <link rel="stylesheet" type="text/css" href="styles.css" />
          <title>Pomidoro</title>
     </head>
     <body>
         <div class="container">
-            <button class="btn" id="start">Start</button>
+            <button class="btn" id="start">Start pomidoro</button>
             <h3 id="timer">25:00</h3>
         </div>
-        <script src="app.js"></script>
+        <div class="container">
+            <h2>Todos</h2>
+            <button id="createTodoButton">Create TODO</button>
+            <ul id="todoList"></ul>
+        </div>
+        <script src="timer.js"></script>
+        <script src="index.js"></script>
     </body>
 </html>

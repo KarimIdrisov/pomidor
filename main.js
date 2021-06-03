@@ -1,25 +1,67 @@
-const { app, BrowserWindow } = require('electron')
-const { Notification } = require('electron')
+'use strict'
 
-const NOTIFICATION_TITLE = 'Уведомление'
-const NOTIFICATION_BODY = 'Notification from the Main process'
+const path = require('path')
+const {app, ipcMain} = require('electron')
 
-function showNotification () {
-    new Notification({ title: NOTIFICATION_TITLE, body: NOTIFICATION_BODY }).show()
-}
+// out constructors
+const Window = require('./Classes/Window')
+const DataStore = require('./Classes/DataStore')
 
-function createWindow () {
-    const win = new BrowserWindow({
-        width: 800,
-        height: 600
+// create a new to-do store
+const todosData = new DataStore({ name: 'Todos Main'})
+
+function main() {
+    // to-do list window
+    let mainWindow = new Window({
+        file: path.join('Renderer', 'index.html')
     })
 
-    win.loadFile('index.html')
+    // init add to-do window
+    let addTodoWindow
+
+    // TODO: put these events in their own life
+
+    // init with todos
+    mainWindow.once('show', () => {
+        mainWindow.webContents.send('todos', todosData.todos)
+    })
+
+    // create add to-do window
+    ipcMain.on('add-todo-window', () => {
+        console.log(1)
+        if (!addTodoWindow) {
+            addTodoWindow = new Window({
+                file: path.join('Renderer', 'addTodo.html'),
+                width: 400,
+                height: 400,
+                // close with the main window
+                parent: mainWindow
+            })
+
+            // cleanup
+            addTodoWindow.on('closed', () => {
+                addTodoWindow = null
+            })
+        }
+    })
+
+    // add to-do from add to-do window
+    ipcMain.on('add-todo', (event, todo) => {
+        const updatedTodos = todosData.addTodo(todo).todos
+
+        mainWindow.send('todos', updatedTodos)
+    })
+
+    // delete to-do
+    ipcMain.on('delete-todo', (event, todo) => {
+        const updatedTodos = todosData.deleteTodo(todo).todos
+
+        mainWindow.send('todos', updatedTodos)
+    })
 }
 
-app.whenReady().then(createWindow)
+app.on('ready', main)
 
 app.on('window-all-closed', function () {
-    if (process.platform !== 'darwin') app.quit()
+    app.quit()
 })
-
