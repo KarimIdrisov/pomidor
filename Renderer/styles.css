@@ -1,19 +1,80 @@
+@import "~roboto-fontface/css/roboto/roboto-fontface.css";
+
+html {
+    font-family: Roboto, serif;
+    background: #e3e3e3;
+}
+
 .btn {
-    height: 50px;
-    width: 100px;
-    border-color: bisque;
-    border-radius: 10px;
+    height: 35px;
+    width: 125px;
+    border-color: #292929;
+    border-radius: 5px;
+    margin: 0.1rem;
+    font-family: Roboto, sans-serif;
+    font-size: 1rem;
+    color: white;
+    background: gray;
+    opacity: 0.8;
 }
 
 .container {
     width: 100%;
-    height: 300px;
+    height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    font-family: Roboto, sans-serif;
 }
 
 body {
     font: caption;
+}
+
+.form {
+    text-align: center;
+    margin-top: 25%;
+
+}
+
+.form-label {
+    font-size: 22px;
+    margin-top: 5px;
+}
+
+.form-btn {
+    margin-top: 10px;
+    margin-left: 5px;
+}
+
+.form-input {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.buttons-pomidoro {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.timer {
+    width: 60px;
+    height: 30px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.list {
+    width: 120px;
+    font-family: Roboto, sans-serif;
+    font-size: 1rem;
+}
+
+.list li {
+    font-family: Roboto, sans-serif;
+    font-size: 1.5rem;
 }

@@ -1,6 +1,8 @@
 'use strict'
 
 const { ipcRenderer } = require('electron')
+const addOneTodo = document.getElementById('add_one_todo')
+const addMoreTodo = document.getElementById('add_more_todo')
 
 document.getElementById('todoForm').addEventListener('submit', (event) => {
     event.preventDefault()
@@ -11,3 +13,9 @@ document.getElementById('todoForm').addEventListener('submit', (event) => {
 
     input.value = ''
 })
+
+addOneTodo.addEventListener('click', () => {
+    ipcRenderer.send('add-todo-window-close')
+})
+
+

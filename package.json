@@ -13,5 +13,8 @@
   "devDependencies": {
     "electron": "^13.0.1",
     "electron-store": "^8.0.0"
+  },
+  "dependencies": {
+    "roboto-fontface": "^0.10.0"
   }
 }

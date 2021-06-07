@@ -13,7 +13,10 @@ const todosData = new DataStore({ name: 'Todos Main'})
 function main() {
     // to-do list window
     let mainWindow = new Window({
-        file: path.join('Renderer', 'index.html')
+        file: path.join('Renderer', 'index.html'),
+        height: 600,
+        x: 100,
+        y: 50
     })
 
     // init add to-do window
@@ -28,14 +31,15 @@ function main() {
 
     // create add to-do window
     ipcMain.on('add-todo-window', () => {
-        console.log(1)
         if (!addTodoWindow) {
             addTodoWindow = new Window({
                 file: path.join('Renderer', 'addTodo.html'),
                 width: 400,
                 height: 400,
                 // close with the main window
-                parent: mainWindow
+                parent: mainWindow,
+                x: 600,
+                y: 100
             })
 
             // cleanup
@@ -43,6 +47,10 @@ function main() {
                 addTodoWindow = null
             })
         }
+    })
+
+    ipcMain.on('add-todo-window-close', () => {
+        addTodoWindow.close()
     })
 
     // add to-do from add to-do window

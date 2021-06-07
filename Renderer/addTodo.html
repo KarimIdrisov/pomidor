@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Add TODO</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
 </head>
 <body>
-<form id="todoForm">
+<form id="todoForm" class="form">
     <div>
-        <label for="add-input">Todo</label>
-        <input id="add-input" type="text" name="add-input" placeholder="I have to...">
+        <label for="add-input" class="form-label">TODO</label>
+        <input class="form-input" id="add-input" type="text" name="add-input" placeholder="I have to...">
     </div>
-    <button>Add TODO</button>
+    <button class="form-btn" id="add_one_todo">Add TODO</button>
+    <button class="form-btn" id="add_more_todo">Add more</button>
 </form>
 <script src="addTodo.js"></script>
 </body>
